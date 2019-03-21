@@ -1,0 +1,51 @@
+{
+  "name": "vue-floating-alert",
+  "version": "0.0.1",
+  "description": "A floating alert for vue2+ projects",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config ./build/webpack.prod.config.js --progress --hide-modules",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericmdantas/vue-floating-alert.git"
+  },
+  "dependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "jest": "^23.6.0",
+    "jest-serializer-vue": "^2.0.2",
+    "mini-css-extract-plugin": "^0.4.5",
+    "node-sass": "^4.10.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass-loader": "^7.1.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "vue": "^2.2.10",
+    "vue-hot-reload-api": "^2.0.8",
+    "vue-jest": "^3.0.1",
+    "vue-loader": "^15.0.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.2.6",
+    "vue-test-utils": "^1.0.0-beta.11",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4"
+  },
+  "keywords": [
+    "vue",
+    "floating",
+    "alert"
+  ],
+  "author": "Eric Mendes Dantas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ericmdantas/vue-floating-alert/issues"
+  },
+  "homepage": "https://github.com/ericmdantas/vue-floating-alert#readme"
+}
