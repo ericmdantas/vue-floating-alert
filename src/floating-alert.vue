@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     hide() {
-      floatingAlert.hide()
+      this.cfgFloatingAlert.visible = false
     },
   },
   mounted() {
