@@ -32,9 +32,12 @@
 <script>
 const DEFAULT_TIME_VISIBLE = 30000
 
+import {Bus} from 'ubus'
+const ubus = new Bus()
+
 export const floatingAlert = {
     error(opt = {}) {
-      this._exibe(Object.assign({title: "Oops!"}, opt, {
+      this._show(Object.assign({title: "Oops!"}, opt, {
         visible: true, 
         timeVisible: DEFAULT_TIME_VISIBLE,
         type: "danger", 
@@ -42,7 +45,7 @@ export const floatingAlert = {
       }))
     },
     info(opt = {}) {
-      this._exibe(Object.assign(opt, {
+      this._show(Object.assign(opt, {
         visible: true, 
         timeVisible: DEFAULT_TIME_VISIBLE,
         type: "info", 
@@ -50,7 +53,7 @@ export const floatingAlert = {
       }))
     },
     warn(opt = {}) {
-      this._exibe(Object.assign(opt, {
+      this._show(Object.assign(opt, {
         visible: true, 
         timeVisible: DEFAULT_TIME_VISIBLE,
         type: "warning", 
@@ -58,7 +61,7 @@ export const floatingAlert = {
       }))
     },
     success(opt = {}) {
-      this._exibe(Object.assign(opt, {
+      this._show(Object.assign(opt, {
         visible: true, 
         timeVisible: DEFAULT_TIME_VISIBLE,
         type: "success", 
@@ -68,32 +71,41 @@ export const floatingAlert = {
     hide() {
       this._hide()
     },
-    _exibe(opt) {
-      
+    _show(opt) {
+      ubus.emit('floating-alert.show', opt)
     },
     _hide() {
-      
+      ubus.emit('floating-alert.hide')
     },
 }
 
 export default {
-    name: 'FloatingAlert',
-    methods: {
-        hide() {
-            floatingAlert.hide()
-        },
+  name: 'FloatingAlert',
+  data() {
+    return {
+      cfgFloatingAlert: {
+        visible: false,
+        type: 'danger',
+        icone: 'warning',
+        title: 'Oops!',
+        message: '',
+      },
+    }
+  },
+  methods: {
+    hide() {
+      floatingAlert.hide()
     },
-    data() {
-      return {
-        cfgFloatingAlert: {
-          visible: false,
-          type: 'danger',
-          icone: 'warning',
-          title: 'Oops!',
-          message: '',
-        },
-      }
-    },
+  },
+  mounted() {
+    ubus.on('floating-alert.show', (opt) => {
+      Object.assign(this.cfgFloatingAlert, opt)
+    })
+
+    ubus.on('floating-alert.hide', () => {
+      this.cfgFloatingAlert.visible = false
+    })
+  },
 }
 </script>
 

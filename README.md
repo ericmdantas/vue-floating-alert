@@ -11,14 +11,14 @@
 
 <script>
 import Vue from 'vue'
-import VueFloatingAlert from 'vue-floating-alert'
+import VueFloatingAlert, {floatingAlert} from 'vue-floating-alert'
 
 Vue.use(VueFloatingAlert)
 
 export default {
     mounted() {
         setTimeout(() => {
-            this.$floatingAlert.success({
+            floatingAlert.success({
                 title: 'Success!',
                 message: 'Woohoo! <i class="fa fa-fw fa-grin-wink"></i>'
             })
