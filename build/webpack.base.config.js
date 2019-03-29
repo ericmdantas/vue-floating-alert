@@ -1,6 +1,4 @@
 const path = require('path')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const {VueLoaderPlugin} = require('vue-loader')
 
 module.exports = {
@@ -11,15 +9,6 @@ module.exports = {
     libraryTarget: 'umd',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
-  },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true
-      }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
   },
   module: {
     rules: [
@@ -39,7 +28,15 @@ module.exports = {
           'css-loader',
           'sass-loader',
         ]
-      }
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader',
+        ]
+      },
     ]
   },
   plugins: [
