@@ -24,46 +24,46 @@
           <div class="floating-alert-close-container">
               <button type="button" 
                       @click="hide()"
-                      class="floating-alert-btn-close">Close</button>
+                      class="floating-alert-btn-close">Fechar</button>
           </div>
   </div>
 </template>
 
 <script>
-const DEFAULT_TIME_VISIBLE = 30000
-
 import {Bus} from 'ubus'
+
+const DEFAULT_TIME_VISIBLE = 30000
 const ubus = new Bus()
+const busEvents = {
+  show: 'floating-alert.show',
+  hide: 'floating-alert.hide',
+}
 
 export const floatingAlert = {
     error(opt = {}) {
-      this._show(Object.assign({title: "Oops!"}, opt, {
+      this._show(Object.assign({title: "Oops!", timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
         visible: true, 
-        timeVisible: DEFAULT_TIME_VISIBLE,
         type: "danger", 
         icon: "warning",
       }))
     },
     info(opt = {}) {
-      this._show(Object.assign(opt, {
+      this._show(Object.assign({timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
         visible: true, 
-        timeVisible: DEFAULT_TIME_VISIBLE,
         type: "info", 
         icon: "info",
       }))
     },
     warn(opt = {}) {
-      this._show(Object.assign(opt, {
+      this._show(Object.assign({timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
         visible: true, 
-        timeVisible: DEFAULT_TIME_VISIBLE,
         type: "warning", 
         icon: "warning",
       }))
     },
     success(opt = {}) {
-      this._show(Object.assign(opt, {
+      this._show(Object.assign({timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
         visible: true, 
-        timeVisible: DEFAULT_TIME_VISIBLE,
         type: "success", 
         icon: "check",
       }))
@@ -72,10 +72,10 @@ export const floatingAlert = {
       this._hide()
     },
     _show(opt) {
-      ubus.emit('floating-alert.show', opt)
+      ubus.emit(busEvents.show, opt)
     },
     _hide() {
-      ubus.emit('floating-alert.hide')
+      ubus.emit(busEvents.hide)
     },
 }
 
@@ -98,11 +98,11 @@ export default {
     },
   },
   mounted() {
-    ubus.on('floating-alert.show', (opt) => {
+    ubus.on(busEvents.show, (opt) => {
       Object.assign(this.cfgFloatingAlert, opt)
     })
 
-    ubus.on('floating-alert.hide', () => {
+    ubus.on(busEvents.hide, () => {
       this.cfgFloatingAlert.visible = false
     })
   },
@@ -169,8 +169,8 @@ $width-small-device: 576px;
     bottom: 0;
     text-align: center;
     padding-top: 16px;
-    border-top-left-radius: 2px;
-    border-top-left-radius: 2px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     color: #fff;
   }  
 
@@ -194,6 +194,9 @@ $width-small-device: 576px;
       padding: 7px 15px;
       text-transform: uppercase;
       font-weight: 500;
+      background-color: transparent;
+      color: #333;
+      border: none;
     }
   } 
 

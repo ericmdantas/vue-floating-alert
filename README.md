@@ -11,14 +11,14 @@
 
 <script>
 import Vue from 'vue'
-import VueFloatingAlert, {floatingAlert} from 'vue-floating-alert'
+import VueFloatingAlert from 'vue-floating-alert'
 
 Vue.use(VueFloatingAlert)
 
 export default {
     mounted() {
         setTimeout(() => {
-            floatingAlert.success({
+            this.$floatingAlert.success({
                 title: 'Success!',
                 message: 'Woohoo! <i class="fa fa-fw fa-grin-wink"></i>'
             })
@@ -30,7 +30,7 @@ export default {
 
 ### Disclaimer
 
-This is a work in progress and as it stands today, it depends on the awesome `@fortawesome/fontawesome-free` and `bootstrap 4.x`. Next versions will probably use this: https://iconsvg.xyz/.
+Deps: `@fortawesome/fontawesome-free` and `bootstrap 4.x`.
 
 
 ### License
