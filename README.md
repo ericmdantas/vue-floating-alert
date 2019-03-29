@@ -5,7 +5,7 @@
 
 <template>
     <div>   
-        <floating-alert></floating-alert>
+        <FloatingAlert />
     </div>
 </template>
 
