@@ -2,7 +2,7 @@
   "name": "vue-floating-alert",
   "version": "0.0.2",
   "description": "A floating alert for vue2+ projects",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "webpack --config ./build/webpack.prod.config.js --progress --hide-modules",
     "test": "jest"
