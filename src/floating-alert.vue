@@ -170,7 +170,7 @@ $width-small-device: 576px;
     text-align: center;
     padding-top: 16px;
     border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
     color: #fff;
   }  
 
