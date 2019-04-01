@@ -36,6 +36,7 @@
 
 <script>
 import {Bus} from 'ubus'
+import knownLanguages from './i18n'
 
 const DEFAULT_TIME_VISIBLE = 30000
 const ubus = new Bus()
@@ -138,8 +139,7 @@ export default {
   },
   watch: {
     language() {
-      let lang = this.language || 'en'
-      this.btnCloseName = require(`${lang}.js`).btnCloseName
+      this.btnCloseName = knownLanguages[this.language || 'en'].btnCloseName
     },
   },
 }
