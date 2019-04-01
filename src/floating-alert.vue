@@ -2,19 +2,24 @@
   <div id="floating-alert" 
           class="alert"
           :class="{
-              'floating-alert-invisible': !cfgFloatingAlert.visible,
-              'alert-danger': cfgFloatingAlert.type === 'danger',
-              'alert-success': cfgFloatingAlert.type === 'success',
-              'alert-info': cfgFloatingAlert.type === 'info',
-              'alert-warning': cfgFloatingAlert.type === 'warning',
+              'floating-alert-invisible': !isVisible,
+              'alert-danger': isError,
+              'alert-warning': isWarning,
+              'alert-info': isInfo,
+              'alert-success': isSuccess,
           }" >
           <div class="floating-alert-icon-container">
-              <span class="fa fa-fw"
-                :class="{
-                  'fa-check': cfgFloatingAlert.icon === 'check',
-                  'fa-exclamation-triangle': cfgFloatingAlert.icon === 'warning',
-                  'fa-info': cfgFloatingAlert.icon === 'info',
-              }"></span>
+              <span v-show="isError || isWarning">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="square" stroke-linejoin="arcs"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12" y2="17"></line></svg>
+              </span>              
+
+              <span v-show="isInfo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="square" stroke-linejoin="arcs"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg>
+              </span>
+
+              <span v-show="isSuccess">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="square" stroke-linejoin="arcs"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
           </div>
           <div class="floating-alert-message-container">
               <p class="floating-alert-spacing-bottom" v-show="!!cfgFloatingAlert.title">{{cfgFloatingAlert.title}}</p>
@@ -34,6 +39,12 @@ import {Bus} from 'ubus'
 
 const DEFAULT_TIME_VISIBLE = 30000
 const ubus = new Bus()
+const floatingAlertTypes = {
+  ERROR: 0,
+  WARNING: 1,
+  INFO: 2,
+  SUCCESS: 3,
+}
 const busEvents = {
   show: 'floating-alert.show',
   hide: 'floating-alert.hide',
@@ -43,29 +54,25 @@ export const floatingAlert = {
     error(opt = {}) {
       this._show(Object.assign({title: "Oops!", timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
         visible: true, 
-        type: "danger", 
-        icon: "warning",
-      }))
-    },
-    info(opt = {}) {
-      this._show(Object.assign({timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
-        visible: true, 
-        type: "info", 
-        icon: "info",
+        type: floatingAlertTypes.ERROR,
       }))
     },
     warn(opt = {}) {
       this._show(Object.assign({timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
         visible: true, 
-        type: "warning", 
-        icon: "warning",
+        type: floatingAlertTypes.WARNING,
+      }))
+    },
+    info(opt = {}) {
+      this._show(Object.assign({timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
+        visible: true, 
+        type: floatingAlertTypes.INFO, 
       }))
     },
     success(opt = {}) {
       this._show(Object.assign({timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
         visible: true, 
-        type: "success", 
-        icon: "check",
+        type: floatingAlertTypes.SUCCESS, 
       }))
     },
     hide() {
@@ -85,8 +92,7 @@ export default {
     return {
       cfgFloatingAlert: {
         visible: false,
-        type: 'danger',
-        icone: 'warning',
+        type: floatingAlertTypes.ERROR,
         title: 'Oops!',
         message: '',
       },
@@ -105,6 +111,23 @@ export default {
     ubus.on(busEvents.hide, () => {
       this.cfgFloatingAlert.visible = false
     })
+  },
+  computed: {
+    isError() {
+      return this.cfgFloatingAlert.type === floatingAlertTypes.ERROR
+    },
+    isWarning() {
+      return this.cfgFloatingAlert.type === floatingAlertTypes.WARNING
+    },
+    isInfo() {
+      return this.cfgFloatingAlert.type === floatingAlertTypes.INFO
+    },
+    isSuccess() {
+      return this.cfgFloatingAlert.type === floatingAlertTypes.SUCCESS
+    },    
+    isVisible() {
+      return this.cfgFloatingAlert.visible
+    },
   },
 }
 </script>
