@@ -13,7 +13,7 @@ $ npm i --save vue-floating-alert
 
 <template>
     <div>   
-        <FloatingAlert />
+        <FloatingAlert language="pt-BR" />
     </div>
 </template>
 

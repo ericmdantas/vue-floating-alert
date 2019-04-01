@@ -29,7 +29,7 @@
           <div class="floating-alert-close-container">
               <button type="button" 
                       @click="hide()"
-                      class="floating-alert-btn-close">Fechar</button>
+                      class="floating-alert-btn-close">{{btnCloseName}}</button>
           </div>
   </div>
 </template>
@@ -88,8 +88,15 @@ export const floatingAlert = {
 
 export default {
   name: 'FloatingAlert',
+  props: {
+    language: {
+      type: String,
+      default: 'en',
+    },
+  },
   data() {
     return {
+      btnCloseName: '',
       cfgFloatingAlert: {
         visible: false,
         type: floatingAlertTypes.ERROR,
@@ -127,6 +134,12 @@ export default {
     },    
     isVisible() {
       return this.cfgFloatingAlert.visible
+    },
+  },
+  watch: {
+    language() {
+      let lang = this.language || 'en'
+      this.btnCloseName = require(`${lang}.js`).btnCloseName
     },
   },
 }
