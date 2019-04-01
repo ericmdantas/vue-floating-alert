@@ -97,7 +97,7 @@ export default {
   },
   data() {
     return {
-      btnCloseName: '',
+      btnCloseName: knownLanguages[this.language || 'en'].btnCloseName,
       idTimeoutTimeVisible: 0,
       cfgFloatingAlert: {
         visible: false,
@@ -112,6 +112,7 @@ export default {
       clearTimeout(this.idTimeoutTimeVisible)
       this.cfgFloatingAlert.visible = false
     },
+    
   },
   mounted() {
     ubus.on(busEvents.show, (opt) => {
