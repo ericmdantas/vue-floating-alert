@@ -98,6 +98,7 @@ export default {
   data() {
     return {
       btnCloseName: '',
+      idTimeoutTimeVisible: 0,
       cfgFloatingAlert: {
         visible: false,
         type: floatingAlertTypes.ERROR,
@@ -108,16 +109,21 @@ export default {
   },
   methods: {
     hide() {
+      clearTimeout(this.idTimeoutTimeVisible)
       this.cfgFloatingAlert.visible = false
     },
   },
   mounted() {
     ubus.on(busEvents.show, (opt) => {
       Object.assign(this.cfgFloatingAlert, opt)
+
+      this.idTimeoutTimeVisible = setTimeout(() => {
+        this.hide()
+      }, this.cfgFloatingAlert.timeVisible)
     })
 
     ubus.on(busEvents.hide, () => {
-      this.cfgFloatingAlert.visible = false
+      this.hide()
     })
   },
   computed: {
