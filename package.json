@@ -24,7 +24,7 @@
     "node-sass": "^4.10.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "sass-loader": "^7.1.0",
-    "ubus": "^1.0.7",
+    "ubus": "^1.0.8",
     "vue": "^2.2.10",
     "vue-hot-reload-api": "^2.0.8",
     "vue-jest": "^3.0.1",
