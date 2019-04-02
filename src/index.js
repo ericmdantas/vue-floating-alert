@@ -16,7 +16,7 @@ export default {
                 floatingAlert.warn(opts)
             },
             hide() {
-                floatingAlert.hide(opts)
+                floatingAlert.hide()
             }
         }
 
