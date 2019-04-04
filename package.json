@@ -14,7 +14,7 @@
   "dependencies": {
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
-    "babel-jest": "^23.6.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.4",
     "css-loader": "^1.0.1",
     "file-loader": "^0.9.0",
@@ -24,14 +24,13 @@
     "node-sass": "^4.10.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "sass-loader": "^7.1.0",
-    "ubus": "^1.0.8",
+    "ubus": "^1.0.9",
     "vue": "^2.2.10",
     "vue-hot-reload-api": "^2.0.8",
     "vue-jest": "^3.0.1",
     "vue-loader": "^15.0.0",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.2.6",
-    "vue-test-utils": "^1.0.0-beta.11",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
@@ -49,6 +48,8 @@
   },
   "homepage": "https://github.com/ericmdantas/vue-floating-alert#readme",
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-jest": "^23.6.0",
     "uglifyjs-webpack-plugin": "^2.1.2"
   }
 }

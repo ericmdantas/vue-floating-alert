@@ -1,5 +1,7 @@
 # vue-floating-alert
 
+[![Build Status](https://travis-ci.org/ericmdantas/vue-floating-alert.svg?branch=master)](https://travis-ci.org/ericmdantas/vue-floating-alert)
+
 ### Install
 
 ```shell
