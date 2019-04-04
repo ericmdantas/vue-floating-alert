@@ -2,7 +2,7 @@ import {createLocalVue} from '@vue/test-utils'
 import VueFloatingAlert from '../src/index'
 
 describe("floatingAlert", () => {
-    describe("creation", () => {
+    describe("install", () => {
         it("should have the methods setup correcly", () => {
             const localVue = createLocalVue()
 
