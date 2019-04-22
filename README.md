@@ -8,7 +8,7 @@
 $ npm i --save vue-floating-alert
 ```
 
-### Usage
+### Usage in components
 
 ```js
 // app.vue
@@ -36,6 +36,23 @@ export default {
     },
 }
 </script>
+```
+
+### Usage in other files
+
+```js
+// app.vue
+
+import {floatingAlert} from 'vue-floating-alert'
+
+export default {
+    doSomething() {
+        floatingAlert.success({
+            title: 'Success!',
+            message: 'Woohoo! <i class="fa fa-fw fa-grin-wink"></i>',
+        })
+    },
+}
 ```
 
 ### Methods

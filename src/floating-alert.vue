@@ -51,7 +51,7 @@ const busEvents = {
   hide: 'floating-alert.hide',
 }
 
-export const floatingAlert = {
+export const floatingAlertService = {
     error(opt = {}) {
       this._show(Object.assign({title: "Oops!", timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
         visible: true, 

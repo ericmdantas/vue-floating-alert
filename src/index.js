@@ -1,25 +1,27 @@
-import VueFloatingAlert, {floatingAlert} from './floating-alert.vue'
+import VueFloatingAlert, {floatingAlertService} from './floating-alert.vue'
 
 export default {
     install(Vue) {
         Vue.prototype.$floatingAlert = {
             error(opts) {
-                floatingAlert.error(opts)
+                floatingAlertService.error(opts)
             },
             success(opts) {
-                floatingAlert.success(opts)
+                floatingAlertService.success(opts)
             },
             info(opts) {
-                floatingAlert.info(opts)
+                floatingAlertService.info(opts)
             },
             warn(opts) {
-                floatingAlert.warn(opts)
+                floatingAlertService.warn(opts)
             },
             hide() {
-                floatingAlert.hide()
+                floatingAlertService.hide()
             }
         }
 
         Vue.component(VueFloatingAlert.name, VueFloatingAlert)
     }
 }
+
+export const floatingAlert = floatingAlertService

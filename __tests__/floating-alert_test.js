@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import {createLocalVue} from '@vue/test-utils'
 import VueFloatingAlertIndex from '../src/index'
-import VueFloatingAlertVue, {floatingAlert} from '../src/floating-alert.vue'
+import VueFloatingAlertVue, {floatingAlertService} from '../src/floating-alert.vue'
 
 describe("floatingAlert", () => {
     describe("external", () => {
@@ -152,7 +152,7 @@ describe("floatingAlert", () => {
                     message: '',
                 })
 
-                floatingAlert.error({
+                floatingAlertService.error({
                     title: 'Uh-oh',
                     message: 'something went wrong!'
                 })
@@ -176,7 +176,7 @@ describe("floatingAlert", () => {
                     message: '',
                 })
 
-                floatingAlert.warn({
+                floatingAlertService.warn({
                     title: 'Hold on',
                     message: 'This could hurt you'
                 })
@@ -200,7 +200,7 @@ describe("floatingAlert", () => {
                     message: '',
                 })
 
-                floatingAlert.info({
+                floatingAlertService.info({
                     title: 'You can chill',
                     message: "We'll let you know when this is finished"
                 })
@@ -224,7 +224,7 @@ describe("floatingAlert", () => {
                     message: '',
                 })
 
-                floatingAlert.success({
+                floatingAlertService.success({
                     title: 'Alright!',
                     message: "That's working as expected!"
                 })
