@@ -53,7 +53,7 @@ const busEvents = {
 
 export const floatingAlertService = {
     error(opt = {}) {
-      this._show(Object.assign({title: "Oops!", timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
+      this._show(Object.assign({title: 'Oops!', timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
         visible: true, 
         type: floatingAlertTypes.ERROR,
       }))
@@ -102,7 +102,7 @@ export default {
       cfgFloatingAlert: {
         visible: false,
         type: floatingAlertTypes.ERROR,
-        title: 'Oops!',
+        title: '',
         message: '',
       },
     }

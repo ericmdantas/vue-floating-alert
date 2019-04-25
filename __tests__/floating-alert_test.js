@@ -35,7 +35,7 @@ describe("floatingAlert", () => {
                 expect(vm.cfgFloatingAlert).toEqual({
                     visible: false,
                     type: 0, // Error
-                    title: 'Oops!',
+                    title: '',
                     message: '',
                 })
             })
@@ -148,7 +148,7 @@ describe("floatingAlert", () => {
                 expect(vm.cfgFloatingAlert).toEqual({
                     visible: false,
                     type: 0, // Error
-                    title: 'Oops!',
+                    title: '',
                     message: '',
                 })
 
@@ -172,7 +172,7 @@ describe("floatingAlert", () => {
                 expect(vm.cfgFloatingAlert).toEqual({
                     visible: false,
                     type: 0, // Error
-                    title: 'Oops!',
+                    title: '',
                     message: '',
                 })
 
@@ -196,7 +196,7 @@ describe("floatingAlert", () => {
                 expect(vm.cfgFloatingAlert).toEqual({
                     visible: false,
                     type: 0, // Error
-                    title: 'Oops!',
+                    title: '',
                     message: '',
                 })
 
@@ -220,7 +220,7 @@ describe("floatingAlert", () => {
                 expect(vm.cfgFloatingAlert).toEqual({
                     visible: false,
                     type: 0, // Error
-                    title: 'Oops!',
+                    title: '',
                     message: '',
                 })
 
@@ -234,6 +234,29 @@ describe("floatingAlert", () => {
                     type: 3, // Success
                     timeVisible: 30000,
                     title: 'Alright!',
+                    message: "That's working as expected!",
+                })
+            })
+
+            it("should change the cfgFloaginAlert accordingly - success withou text", () => {
+                const vm = new Vue(VueFloatingAlertVue).$mount()
+
+                expect(vm.cfgFloatingAlert).toEqual({
+                    visible: false,
+                    type: 0, // Error
+                    title: '',
+                    message: '',
+                })
+
+                floatingAlertService.success({
+                    message: "That's working as expected!"
+                })
+
+                expect(vm.cfgFloatingAlert).toEqual({
+                    visible: true,
+                    type: 3, // Success
+                    timeVisible: 30000,
+                    title: '',
                     message: "That's working as expected!",
                 })
             })
