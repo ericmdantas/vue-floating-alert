@@ -1,6 +1,6 @@
 {
   "name": "vue-floating-alert",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A floating alert for vue2+ projects",
   "main": "dist/index.js",
   "scripts": {
