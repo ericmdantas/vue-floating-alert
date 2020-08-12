@@ -38,7 +38,7 @@
 import {Bus} from 'ubus'
 import knownLanguages from './i18n'
 
-const DEFAULT_TIME_VISIBLE = 30000
+const DEFAULT_TIME_VISIBLE = 30000 // 30s
 const ubus = new Bus()
 const floatingAlertTypes = {
   ERROR: 0,
@@ -53,25 +53,49 @@ const busEvents = {
 
 export const floatingAlertService = {
     error(opt = {}) {
-      this._show(Object.assign({title: 'Oops!', timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
+      const baseObj = {
+        title: 'Oops!', 
+        message: '',
+        timeVisible: DEFAULT_TIME_VISIBLE
+      }
+
+      this._show(Object.assign(baseObj, opt, {
         visible: true, 
         type: floatingAlertTypes.ERROR,
       }))
     },
     warn(opt = {}) {
-      this._show(Object.assign({timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
+      const baseObj = {
+        title: '', 
+        message: '',
+        timeVisible: DEFAULT_TIME_VISIBLE
+      }
+
+      this._show(Object.assign(baseObj, opt, {
         visible: true, 
         type: floatingAlertTypes.WARNING,
       }))
     },
     info(opt = {}) {
-      this._show(Object.assign({timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
+      const baseObj = {
+        title: '', 
+        message: '',
+        timeVisible: DEFAULT_TIME_VISIBLE
+      }
+
+      this._show(Object.assign(baseObj, opt, {
         visible: true, 
         type: floatingAlertTypes.INFO, 
       }))
     },
     success(opt = {}) {
-      this._show(Object.assign({timeVisible: DEFAULT_TIME_VISIBLE}, opt, {
+      const baseObj = {
+        title: '', 
+        message: '',
+        timeVisible: DEFAULT_TIME_VISIBLE
+      }
+
+      this._show(Object.assign(baseObj, opt, {
         visible: true, 
         type: floatingAlertTypes.SUCCESS, 
       }))

@@ -238,7 +238,7 @@ describe("floatingAlert", () => {
                 })
             })
 
-            it("should change the cfgFloaginAlert accordingly - success withou text", () => {
+            it("should change the cfgFloaginAlert accordingly - success without text", () => {
                 const vm = new Vue(VueFloatingAlertVue).$mount()
 
                 expect(vm.cfgFloatingAlert).toEqual({
@@ -258,6 +258,64 @@ describe("floatingAlert", () => {
                     timeVisible: 30000,
                     title: '',
                     message: "That's working as expected!",
+                })
+            })
+
+            it("should not reuse the previous title", () => {
+                const vm = new Vue(VueFloatingAlertVue).$mount()
+
+                floatingAlertService.success({
+                    title: 'Alright!',
+                    message: "That's working as expected!"
+                })
+
+                expect(vm.cfgFloatingAlert).toEqual({
+                    visible: true,
+                    type: 3, // Success
+                    timeVisible: 30000,
+                    title: 'Alright!',
+                    message: "That's working as expected!",
+                })
+
+                floatingAlertService.success({
+                    message: "That's working as expected!"
+                })
+
+                expect(vm.cfgFloatingAlert).toEqual({
+                    visible: true,
+                    type: 3, // Success
+                    timeVisible: 30000,
+                    title: '',
+                    message: "That's working as expected!",
+                })
+            })
+
+            it("should not reuse the previous message", () => {
+                const vm = new Vue(VueFloatingAlertVue).$mount()
+
+                floatingAlertService.success({
+                    title: 'Alright!',
+                    message: "That's working as expected!"
+                })
+
+                expect(vm.cfgFloatingAlert).toEqual({
+                    visible: true,
+                    type: 3, // Success
+                    timeVisible: 30000,
+                    title: 'Alright!',
+                    message: "That's working as expected!",
+                })
+
+                floatingAlertService.success({
+                    title: "Alright!"
+                })
+
+                expect(vm.cfgFloatingAlert).toEqual({
+                    visible: true,
+                    type: 3, // Success
+                    timeVisible: 30000,
+                    title: 'Alright!',
+                    message: "",
                 })
             })
         })
